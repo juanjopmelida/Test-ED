@@ -1,0 +1,13 @@
+input{
+    font-size:100px;
+    padding:50px;
+    width:500px;
+}
+
+.label{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size:30px;
+    padding:50px;
+    width:650px;
+    align-self:center;
+}
