@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script type="text/javascript">      
+      var fantasyLit = {
+          tolkien: "The Lord of the Rings",
+          lewis: "The Chronicles of Narnia"
+      };
+
+      console.log(removeProperty(fantasyLit, "lewis"));
+
+      function removeProperty(obj, prop) {
+          if (prop in obj){
+              delete obj.prop;
+              return true;
+          }else{
+              return false;
+          }
+      }
+    </script>
+  </head>
+</html>
