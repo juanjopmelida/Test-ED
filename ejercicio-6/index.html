@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script type="text/javascript">      
+      let partidos = {
+          podemos: {1: "Pablo Iglesias", 2: "Irene Montero"},
+          psoe: {1: "Pedro Sánchez", 2: "Carmen Calvo"},
+          pp: {1: "Pablo Casado", 2: "Adolfo Suárez" },
+          ciudadanos: {1: "Albert Rivera", 2: "Marcos de Quinto"}
+      };
+
+      function accessor(obj, value, path) {
+        let paths = path.split('.')
+            , current = obj
+            , i;
+        
+        if (typeof current == "undefined") return value;
+
+        for (i = 0; i < paths.length; ++i) {
+            if (current[paths[i]] == undefined) {
+            return value;
+            } else {
+            current = current[paths[i]];
+            }
+        }
+        return current;
+      }
+
+      console.log(accessor(partidos, 'no consta', 'psoe.1'));
+      console.log(accessor(partidos, 'no consta', 'ciudadanos.3'))
+    </script>
+  </head>
+</html>
