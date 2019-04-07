@@ -1,2 +1,2 @@
 # Test-ED
-resultados del test de evaluación
+Respuestas al test de evaluación
