@@ -38,6 +38,8 @@
     
     // add popup for the line
     geojsonLayer.eachLayer(function (layer) {
+        layer.setStyle(style());
+
         let popup = L.popup();
         popup.setContent(layer.feature.properties.texto);
         
@@ -46,10 +48,12 @@
         layer.on('mouseover', function (e) {
             let popup = e.target.getPopup();
             popup.setLatLng(e.latlng).openOn(map);
+            layer.setStyle(mouseoverStyle());
         });
 
         layer.on('mouseout', function(e) {
             e.target.closePopup();
+            layer.setStyle(style());
         });
 
         layer.on('mousemove', function (e) {
@@ -58,22 +62,18 @@
             popup.setLatLng(e.latlng).openOn(map);
         });
 
-        layer.setStyle(style());
-
         layer.on('click', function(e) {
-            console.clear();
-            //map.getBounds()==layer.getBounds ? map.setView([40.2085, -3.7130], 6) : map.fitBounds(layer.getBounds());
             if (_click===0){
                 map.fitBounds(layer.getBounds());
+                //layer.setStyle(mouseoverStyle());
                 _click=1;
             }
             else {
                 map.setView([40.2085, -3.7130], 6);
+                //layer.setStyle(style());
                 _click=0;
             }
             map.fitBounds(layer.getBounds());
-            console.log(map);
-            console.log(layer);
         });
     });
     
@@ -82,6 +82,17 @@
         fillColor: '#800026', 
         weight: 2, 
         opacity: 1, 
+        color: 'white', 
+        dashArray: '3', 
+        fillOpacity: 0.7 
+        }; 
+    }
+
+    function mouseoverStyle(feature) { 
+        return { 
+        fillColor: '#aa0022', 
+        weight: 4, 
+        opacity: 2, 
         color: 'white', 
         dashArray: '3', 
         fillOpacity: 0.7 
