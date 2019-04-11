@@ -34,7 +34,7 @@
 
     let geojsonLayer = new L.GeoJSON(ccaa).addTo(map);
     
-    //L.geoJson(ccaa, { style: style }).addTo(map);
+    let _click = 0;
     
     // add popup for the line
     geojsonLayer.eachLayer(function (layer) {
@@ -63,7 +63,14 @@
         layer.on('click', function(e) {
             console.clear();
             //map.getBounds()==layer.getBounds ? map.setView([40.2085, -3.7130], 6) : map.fitBounds(layer.getBounds());
-
+            if (_click===0){
+                map.fitBounds(layer.getBounds());
+                _click=1;
+            }
+            else {
+                map.setView([40.2085, -3.7130], 6);
+                _click=0;
+            }
             map.fitBounds(layer.getBounds());
             console.log(map);
             console.log(layer);
